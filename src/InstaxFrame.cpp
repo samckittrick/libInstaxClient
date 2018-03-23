@@ -19,7 +19,7 @@ namespace InstaxClient
     if(readQueue.size() == PACKET_DATA_OFFSET)
       {
 	printf("Need to parse the header");
-	return true
+	return true;
       }
   }
     

@@ -12,6 +12,7 @@ InstaxFrame - Class for building and managing data packets sent between client a
 
 #include <vector>
 #include <stdint.h>
+#include <stdio.h>
 
 namespace InstaxClient
 {
