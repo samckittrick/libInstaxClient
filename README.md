@@ -14,3 +14,11 @@ Client library for communicating with instax printers
    - Directory containing source files
 6. build
    -Working directory for cmake
+
+
+**Credits**
+
+DownloadProject
+By: Crascit
+https://github.com/Crascit/DownloadProject
+

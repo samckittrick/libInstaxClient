@@ -53,6 +53,8 @@ namespace InstaxClient
     uint32_t UID;
     uint16_t password;
 
+    //void parseHeader();
+
   public:
     //InstaxFrame();
     bool recvPacket(uint8_t byte);
