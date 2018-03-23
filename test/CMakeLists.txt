@@ -30,3 +30,21 @@ endif()
 add_executable(gtestTest GTest_Install_Test.cpp)
 target_link_libraries(gtestTest gtest gmock_main)
 add_test(NAME Google_Test_Installed COMMAND gtestTest)
+#Show Gtest Colors
+set_tests_properties (
+  Google_Test_Installed
+  PROPERTIES
+  ENVIRONMENT GTEST_COLOR=1
+  )
+
+
+include_directories(${PROJECT_SOURCE_DIR}/src)
+add_executable(instax_frame_test InstaxFrameTest.cpp)
+target_link_libraries(instax_frame_test gtest gmock_main libInstaxClient-Static)
+add_test(NAME InstaxFrameTest COMMAND instax_frame_test)
+#Show Gtest Colors
+set_tests_properties (
+  InstaxFrameTest
+  PROPERTIES
+  ENVIRONMENT GTEST_COLOR=1
+  )
