@@ -1,6 +1,6 @@
 /** Namespace defining various status enums for use in interacting with the printer */
 
-namespace InstaxCient {
+namespace InstaxClient {
 
   /**  Printer activity states */
   enum PRINTER_STATE {
@@ -50,8 +50,9 @@ namespace InstaxCient {
 
   /** Instax printer type */
   enum INSTAX_TYPE {
-    SP1,
-    SP2
+    SP1
+    //SP2 //SP-2 is not yet supported.
+
   };
 
 }
