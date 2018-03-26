@@ -13,6 +13,8 @@ InstaxFrame - Class for building and managing data packets sent between client a
 #include <vector>
 #include <stdint.h>
 #include <stdio.h>
+#include <exception>
+#include <string>
 
 namespace InstaxClient
 {
@@ -54,13 +56,31 @@ namespace InstaxClient
     uint32_t UID;
     uint16_t password;
 
-    //void parseHeader();
-
+    void parseHeader();
+    bool verifyChecksum();
+    uint32_t generateChecksum(std::vector<uint8_t> packet);
+    
   public:
     //InstaxFrame();
     bool recvPacket(uint8_t byte);
+    uint8_t getSID();
+    uint16_t getLength();
+    uint32_t getUID();
+    uint16_t getPassword();
   
   };
+
+  struct InvalidFrameException : public std::exception {
+    std::string message;
+    InvalidFrameException(std::string m) {
+      message = m;
+    }
+
+    const char * what() {
+      return message.c_str();
+    }
+  };
+  
 }
     
 #endif

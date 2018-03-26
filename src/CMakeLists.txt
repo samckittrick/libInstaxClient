@@ -5,5 +5,8 @@ file(GLOB libInstaxClient_src
   "*.cpp"
   )
 
-add_library(libInstaxClient-Static STATIC ${libInstaxClient_src})
+add_library(libInstaxClient-Static STATIC InstaxFrame.hpp
+  InstaxFrame.cpp
+  InstaxStatus.hpp
+  )
 
