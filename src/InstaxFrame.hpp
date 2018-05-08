@@ -57,16 +57,45 @@ namespace InstaxClient
     uint16_t password;
 
     void parseHeader();
-    bool verifyChecksum();
-    uint32_t generateChecksum(std::vector<uint8_t> packet);
+    const bool verifyChecksum();
+    static uint32_t generateChecksum(const std::vector<uint8_t>& packet);
     
   public:
     //InstaxFrame();
-    bool recvPacket(uint8_t byte);
-    uint8_t getSID();
-    uint16_t getLength();
-    uint32_t getUID();
-    uint16_t getPassword();
+    
+    /*
+      The frame is built by inserting one byte at a time.
+      Each call to this function takes a byte. It will return true when a full packet is recieved
+      It will throw an exception when something is wrong with the frame.
+    */
+    bool recvPacket(const uint8_t byte);
+
+    /* Returns the SID of the packet */
+    const uint8_t getSID();
+
+    /* Returns the full length of the packet including header and checksum */
+    const uint16_t getLength();
+
+    /* Returns the UID (device id) of the sender */
+    const uint32_t getUID();
+
+    /* Returns the password in the request */
+    const uint16_t getPassword();
+
+    /* Copies the packet data into the provided array. Returns the length of the data copied */
+    const int getPacketData(std::vector<uint8_t> * dest);
+
+    /*
+      Build a frame ready to be sent over the network. 
+      Takes a pointer to the vector the packet should be added
+      Takes packet parameters and vector of data
+    */
+    static void buildOutgoingPacket(std::vector<uint8_t> * packet,
+				    const uint8_t startByte,
+				    const uint8_t SID,
+				    const uint32_t UID,
+				    const uint16_t password,
+				    const std::vector<uint8_t>& data);
   
   };
 
