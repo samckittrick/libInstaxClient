@@ -28,8 +28,8 @@ namespace InstaxClient
 
     InstaxPrinterParameter(INSTAX_TYPE);
     int getHeight();
-    //int getWidth();
-    //int getMaxSize();
+    int getWidth();
+    int getMaxSize();
 
   private:
     INSTAX_TYPE myType;
