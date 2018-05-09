@@ -1,9 +1,7 @@
 /*
 
-Instax Client Library
+Instax Client Library 
 By: Scott McKittrick
-
-InstaxPrinterParameter - Class for managing and providing parameters for a given printer.
 
 */
 
@@ -11,63 +9,38 @@ InstaxPrinterParameter - Class for managing and providing parameters for a given
 #define INSTAX_PRINTER_PARAMETER_HPP
 
 #include "InstaxStatus.hpp"
-#include <exception>
-#include <string>
 
 namespace InstaxClient
-{ 
-  class InstaxPrinterParameter
-  {
-  public:
-    //Maximum image sizes
-    static const int SP1_HEIGHT = 640;
-    static const int SP1_WIDTH = 480;
-    static const int SP1_MAX_SIZE = 153600;
-
-    static const int IMAGE_FORMAT_JPG = 2;
-
-    InstaxPrinterParameter(INSTAX_TYPE);
-    int getHeight();
-    int getWidth();
-    int getMaxSize();
-
-  private:
+{
+  struct InstaxPrinterParam {
+    //Printer Type
     INSTAX_TYPE myType;
 
+    //Image Parameters
+    int IMAGE_HEIGHT;
+    int IMAGE_WIDTH;
+    int MAX_IMAGE_SIZE;
+    int IMAGE_FORMAT_JPG;
+    
+    //Firmware information
+    int BOOT_VER;
+    int FIRMWARE_VER;
+    int FPGA_VER;
+    int funtionVersions[10];
   };
 
-  InstaxPrinterParameter::InstaxPrinterParameter(INSTAX_TYPE t)
-  {
-    myType = t;
+  //Specify printer parameters for SP1 Printers
+  const struct InstaxPrinterParam SP11_PARAM = {
+    INSTAX_TYPE::SP1,
+    640,
+    480,
+    153600,
+    2,
+    0x0301,
+    0x0322,
+    0x0213,
+    { 0x01, 0x01, 0x01, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}
   }
-
-  int InstaxPrinterParameter::getHeight()
-  {
-    switch(myType)
-      {
-      case INSTAX_TYPE::SP1:
-	return SP1_HEIGHT;
-      }
-  }
-
-  int InstaxPrinterParameter::getWidth()
-  {
-    switch(myType)
-      {
-      case INSTAX_TYPE::SP1:
-	return SP1_WIDTH;
-      }
-  }
-
-  int InstaxPrinterParameter::getMaxSize()
-  {
-    switch(myType)
-      {
-      case INSTAX_TYPE::SP1:
-        return SP1_MAX_SIZE;
-      }
-  }
-
+    
 }
-
-#endif //INSTAX_PRINTER_PARAMETER_HPP
+#endif
