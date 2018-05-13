@@ -30,7 +30,7 @@ namespace InstaxClient
   };
 
   //Specify printer parameters for SP1 Printers
-  const struct InstaxPrinterParam SP11_PARAM = {
+  const struct InstaxPrinterParam SP1_PARAM = {
     INSTAX_TYPE::SP1,
     640,
     480,
